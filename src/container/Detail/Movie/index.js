@@ -169,7 +169,7 @@ const Movie = ({
                     value={movieAbout.vote_average * 10}
                   />
                   <span className="percent">
-                    {movieAbout.vote_average * 10}%
+                    {Math.floor(movieAbout.vote_average * 10)}%
                   </span>
                 </li>
                 <li className="text-score">
