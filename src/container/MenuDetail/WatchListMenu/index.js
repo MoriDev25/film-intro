@@ -107,7 +107,7 @@ const WatchListMenu = ({
                         : { left: "9px" }
                     }
                   >
-                    {item.vote_average * 10}
+                    {Math.floor(item.vote_average * 10)}
                     <sup className="percent-text">%</sup>
                   </span>
                 </div>
