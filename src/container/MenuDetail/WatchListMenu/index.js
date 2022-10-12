@@ -34,6 +34,15 @@ const WatchListMenu = ({
   const onDeleteTv = (item) => {
     dispatch(deleteTv(item));
   };
+  
+  const getListByType = () => {
+    if (type === "list-movie") {
+      return watchListMovie
+    }
+    else {
+      return watchListTv
+    }
+  }
 
   useEffect(() => {
     handleScrollToTop()
@@ -49,19 +58,10 @@ const WatchListMenu = ({
     return () => {
       window.removeEventListener("scroll", toTop)
     }
-  }, [type]);
+  }, [type, getListByType]);
 
   if (!watchListMovie) {
     return <h3>Loading...</h3>;
-  }
-
-  const getListByType = () => {
-    if (type === "list-movie") {
-      return watchListMovie
-    }
-    else {
-      return watchListTv
-    }
   }
 
   const handleScrollToTop = () => window.scrollTo({
