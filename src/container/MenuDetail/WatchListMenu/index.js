@@ -35,30 +35,40 @@ const WatchListMenu = ({
     dispatch(deleteTv(item));
   };
   
-  const getListByType = () => {
-    if (type === "list-movie") {
-      return watchListMovie
-    }
-    else {
-      return watchListTv
-    }
-  }
+  useEffect(() => {
+    let toTop = () => {
+      setScrollToTop(window.scrollY > 100);
+    };
+    window.addEventListener("scroll", toTop);
+    return () => {
+      window.removeEventListener("scroll", toTop);
+    };
+  }, []);
 
   useEffect(() => {
-    handleScrollToTop()
+    handleScrollToTop();
     if (type === "list-movie") {
-      dispatch(getWatchListMovie())
+      dispatch(getWatchListMovie());
     } else {
       dispatch(getWatchListTv());
     }
-    let toTop = () => {
-      setScrollToTop(window.scrollY > 100)
+  }, [type]);
+
+  const getListByType = () => {
+    if (type === "list-movie") {
+      return watchListMovie;
+    } else {
+      return watchListTv;
     }
-    window.addEventListener("scroll", toTop);
-    return () => {
-      window.removeEventListener("scroll", toTop)
+  };
+
+  useEffect(() => {
+    if (type === "list-movie") {
+      dispatch(getWatchListMovie());
+    } else {
+      dispatch(getWatchListTv());
     }
-  }, [type, getListByType]);
+  }, [getListByType]);
 
   if (!watchListMovie) {
     return <h3>Loading...</h3>;
