@@ -162,7 +162,7 @@ const Tv = ({
                     variant="determinate"
                     value={tvAbout.vote_average * 10}
                   />
-                  <span className="percent">{tvAbout.vote_average * 10}%</span>
+                  <span className="percent">{Math.floor(tvAbout.vote_average * 10)}%</span>
                 </li>
                 <li className="text-score">
                   <span>User Score</span>
